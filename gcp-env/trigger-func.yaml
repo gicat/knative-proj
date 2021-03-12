@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: trigger-func
+  name: trigger-func
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: trigger-func
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: trigger-func
+    spec:
+      containers:
+      - image: trigger-func
+        name: trigger-func
+        resources: {}
+status: {}

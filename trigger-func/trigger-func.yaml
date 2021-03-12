@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: trigger-func
+  name: trigger-func
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: trigger-func
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: trigger-func
+    spec:
+      containers:
+      - image: gcr.io/integral-bliss-306817/trigger-func:latest
+        name: trigger-func
+        ports:
+        - containerPort: 3000
+        env:
+          - name: PORT
+            value: "3000"
+        resources: {}
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: trigger-func-svc
+  name: trigger-func-svc
+spec:
+  ports:
+  - name: http
+    port: 3000
+  selector:
+    app: trigger-func
+  type: NodePort
+status:
+  loadBalancer: {}
