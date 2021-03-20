@@ -17,14 +17,23 @@ spec:
       labels:
         app: trigger-func
     spec:
+      volumes:
+      - name: google-cloud-key
+        secret:
+          secretName: pubsub-key
       containers:
       - image: gcr.io/integral-bliss-306817/trigger-func:latest
         name: trigger-func
         ports:
         - containerPort: 3000
+        volumeMounts:
+        - name: google-cloud-key
+          mountPath: /var/secrets/google
         env:
           - name: PORT
             value: "3000"
+          - name: GOOGLE_APPLICATION_CREDENTIALS
+            value: /var/secrets/google/key.json
         resources: {}
 status: {}
 ---
