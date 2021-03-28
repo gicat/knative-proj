@@ -18,6 +18,10 @@ kubectl apply --filename https://github.com/knative/net-istio/releases/download/
 kubectl apply --filename https://github.com/knative/net-istio/releases/download/v0.21.0/net-istio.yaml
 kubectl apply --filename https://github.com/knative/serving/releases/download/v0.21.0/serving-default-domain.yaml
 
+kubectl apply --filename https://github.com/knative/eventing/releases/download/v0.21.0/eventing-crds.yaml
+kubectl apply --filename https://github.com/knative/eventing/releases/download/v0.21.0/eventing-core.yaml
+kubectl apply --filename https://github.com/google/knative-gcp/releases/download/v0.21.0/cloud-run-events.yaml
+
 gcloud pubsub topics create feedback-created
 gcloud pubsub topics create feedback-classified
 

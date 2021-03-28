@@ -1,0 +1,12 @@
+apiVersion: events.cloud.google.com/v1
+kind: CloudPubSubSource
+metadata:
+  name: analysis-func-invoker
+spec:
+  topic: feedback-created
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: analysis-func
+  serviceAccountName: analysis-func
