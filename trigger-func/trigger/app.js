@@ -7,6 +7,8 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+const uuid = require('uuid').v4;
+
 const { Firestore } = require('@google-cloud/firestore');
 const { PubSub }= require('@google-cloud/pubsub');
 
@@ -50,17 +52,27 @@ app.post('/', function (req, res) {
         sentimentScore: -1,
         sentimentMagnitude: -1
     };
-    const response = addFeedback(entity);
-    console.log('Added document with ID: ', response);
-    // Send out a Pubsub message that your object was saved
-    const dataBuffer = Buffer.from(JSON.stringify(entity));
-    pubsubClient.topic('feedback-created').publish(dataBuffer);
-    // Respond to the client that the object was saved
-    res.status(201).send();
+	const newFeedbackId = uuid();
+    const response = addFeedback(entity, newFeedbackId).then(resp => {
+		console.log(resp);
+		const msg = JSON.stringify({
+		  newFeedbackId,
+		});
+		// Send out a Pubsub message that your object was saved
+		const dataBuffer = Buffer.from(msg);
+		pubsubClient.topic('feedback-created').publish(dataBuffer);
+		// Respond to the client that the object was saved
+		res.status(201).send();
+	}).catch(err => {
+		console.log(err);
+		res.status(500).send();
+	});
+    console.log('Added document with ID: ', newFeedbackId);
+	
 });
 
-async function addFeedback(entity) {
-    const response = await feedbackRef.add(entity);
+async function addFeedback(entity, uuid) {
+    const response = await feedbackRef.doc(uuid).set(entity);
     return response;
 }
 
