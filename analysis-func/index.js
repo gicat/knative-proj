@@ -14,7 +14,7 @@ const config = {
 // with a Google SA (using Workload Identity), so no need to create a service
 // account key and provide its path in the constructor options for the GCP
 // clients, and no need to specify project ID.
-const feedbackRef = new Firestore().collection('feedback');
+const feedbackRef = new Firestore().collection('Feedback');
 const pubsubClient = new PubSub();
 const languageClient = new language.LanguageServiceClient();
 
@@ -37,7 +37,7 @@ app.post('/', async (req, res) => {
       res.status(200).send();
       return;
     }
-
+	
     // If message is valid, get feedback out of Firestore.
     // (https://firebase.google.com/docs/firestore/query-data/get-data#node.js)
     const newFeedbackId = message.newFeedbackId;
