@@ -1,2 +1,4 @@
 /trigger-func/trigger/node_modules
 /trigger-func/pubsub_serviceaccount.json
+/reporting-func-v1/node_modules
+/reporting-func-v1/service.yaml

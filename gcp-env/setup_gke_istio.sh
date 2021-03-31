@@ -65,17 +65,16 @@ gcloud container clusters create customer-feedback \
 echo "Install Knative"
 # Install Knative onto newly-created cluster.
 # (https://knative.dev/docs/install/any-kubernetes-cluster/#installing-the-serving-component)
-KNATIVE_SERVING_VERSION="v0.19.0"
-KNATIVE_EVENTING_VERSION="v0.19.0"
+KNATIVE_SERVING_VERSION="v0.21.0"
+KNATIVE_EVENTING_VERSION="v0.21.0"
 kubectl apply --filename https://github.com/knative/serving/releases/download/$KNATIVE_SERVING_VERSION/serving-crds.yaml
 kubectl apply --filename https://github.com/knative/serving/releases/download/$KNATIVE_SERVING_VERSION/serving-core.yaml
-kubectl apply --filename https://github.com/knative/net-istio/releases/download/$KNATIVE_SERVING_VERSION/release.yaml
-kubectl apply --filename https://github.com/knative/eventing/releases/download/$KNATIVE_EVENTING_VERSION/eventing-crds.yaml
-kubectl apply --filename https://github.com/knative/eventing/releases/download/$KNATIVE_EVENTING_VERSION/eventing-core.yaml
-
 kubectl apply --filename https://github.com/knative/net-istio/releases/download/$KNATIVE_SERVING_VERSION/istio.yaml
 kubectl apply --filename https://github.com/knative/net-istio/releases/download/$KNATIVE_SERVING_VERSION/net-istio.yaml
 kubectl apply --filename https://github.com/knative/serving/releases/download/$KNATIVE_SERVING_VERSION/serving-default-domain.yaml
+kubectl apply --filename https://github.com/knative/net-istio/releases/download/$KNATIVE_SERVING_VERSION/release.yaml
+kubectl apply --filename https://github.com/knative/eventing/releases/download/$KNATIVE_EVENTING_VERSION/eventing-crds.yaml
+kubectl apply --filename https://github.com/knative/eventing/releases/download/$KNATIVE_EVENTING_VERSION/eventing-core.yaml
 
 echo "knative-gcp CRDs"
 sleep 5
@@ -139,5 +138,5 @@ echo "Optionally, use the test_kn_deployment.yaml script to deploy a sample from
 kubectl apply -f ../trigger-func/trigger-func.yaml
 kubectl apply -f ../trigger-func/trigger-func-istio.yaml
 
-#kubectl create secret generic pubsub-key --from-file=key.json=../trigger-func/pubsub_serviceaccount.json
+kubectl create secret generic pubsub-key --from-file=key.json=../trigger-func/pubsub_serviceaccount.json
 

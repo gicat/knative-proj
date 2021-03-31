@@ -1,0 +1,12 @@
+apiVersion: events.cloud.google.com/v1
+kind: CloudPubSubSource
+metadata:
+  name: reporting-func-invoker
+spec:
+  topic: feedback-classified
+  sink:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: reporting-func
+  serviceAccountName: reporting-func
