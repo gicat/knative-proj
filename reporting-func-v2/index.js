@@ -67,7 +67,7 @@ app.post('/', async (req, res) => {
 		  ['createdAt', feedbackObj.createdAt],
 		  ['sentimentScore', feedbackObj.sentimentScore],
 		  ['sentimentMagnitude', feedbackObj.sentimentMagnitude],
-		  ['version', 'v1'],
+		  ['version', 'v2'],
 		  ['', '']
         ],
       },
