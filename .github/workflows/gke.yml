@@ -25,7 +25,7 @@ env:
   GKE_CLUSTER: customer-feedback    # TODO: update to cluster name
   GKE_ZONE: europe-west4-c   # TODO: update to cluster zone
   DEPLOYMENT_NAME: reporting-func # TODO: update to deployment name
-  IMAGE: static-site
+  IMAGE: reporting-func-v2
 
 jobs:
   setup-build-publish-deploy:
