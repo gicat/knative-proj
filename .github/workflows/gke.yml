@@ -25,7 +25,7 @@ env:
   GKE_CLUSTER: customer-feedback    # TODO: update to cluster name
   GKE_ZONE: europe-west4-c   # TODO: update to cluster zone
   DEPLOYMENT_NAME: reporting-func # TODO: update to deployment name
-  IMAGE: reporting-func-v2
+  IMAGE: v2
 
 jobs:
   setup-build-publish-deploy:
@@ -55,7 +55,7 @@ jobs:
     # Build the Docker image
     - name: Build
       run: |-
-        docker build \
+        docker build -f ./reporting-func-v2/Dockerfile \
           --tag "gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA" \
           --build-arg GITHUB_SHA="$GITHUB_SHA" \
           --build-arg GITHUB_REF="$GITHUB_REF" \
