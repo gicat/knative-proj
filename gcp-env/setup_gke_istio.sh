@@ -56,7 +56,7 @@ echo "Install GKE"
 #  --workload-pool "$PROJECT_ID.svc.id.goog"
 
 gcloud container clusters create customer-feedback \
-    --cluster-version=1.18.12-gke.1210 \
+    --cluster-version=1.18.16-gke.302 \
     --machine-type=n1-standard-2 \
 	--scopes "https://www.googleapis.com/auth/devstorage.read_only","https://www.googleapis.com/auth/logging.write","https://www.googleapis.com/auth/monitoring","https://www.googleapis.com/auth/servicecontrol","https://www.googleapis.com/auth/service.management.readonly","https://www.googleapis.com/auth/trace.append" \
     --num-nodes=4 \

@@ -1,0 +1,20 @@
+{
+  "name": "reporting-func-v1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@google-cloud/firestore": "^4.4.0",
+    "@google-cloud/pubsub": "^2.5.0",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "googleapis": "^68.0.0",
+    "lodash": "^4.17.20"
+  }
+}
